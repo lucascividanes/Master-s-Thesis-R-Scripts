@@ -1,12 +1,12 @@
 library(readr)
 library(tidyverse)
 
-votacao_secao_2016_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_secao_2016_SP.txt", 
+votacao_secao_2016_SP <- read_delim("votacao_secao_2016_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                     ";", escape_double = FALSE, col_names = FALSE, 
                                     locale = locale(encoding = "latin1"), 
                                     trim_ws = TRUE)
 
-votacao_candidato_munzona_2016_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_candidato_munzona_2016_SP.csv", 
+votacao_candidato_munzona_2016_SP <- read_delim("votacao_candidato_munzona_2016_SP.csv",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                                 ";", escape_double = FALSE, locale = locale(encoding = "latin1"), 
                                                 trim_ws = TRUE)
 
@@ -19,7 +19,7 @@ votacao_secao_2016_SP_sp_ver$zs <- str_replace(votacao_secao_2016_SP_sp_ver$zs, 
 
 votacao_secao_2016_SP_sp_ver_nom <- subset(votacao_secao_2016_SP_sp_ver, X14>99)
 
-ZONA_SECAO <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/csv/ZONA_SECAO.csv", 
+ZONA_SECAO <- read_delim("ZONA_SECAO.csv",     # download at https://github.com/lucascividanes/Master-s-Thesis-R-Scripts/blob/master/ZONA_SECAO.csv
                          ";", escape_double = FALSE, locale = locale(encoding = "UTF-8"), 
                          trim_ws = TRUE)
 
@@ -54,7 +54,7 @@ sp_ver_2016_dom$B <- NULL
 library(spdep)
 library(ape)
 
-distr <- read_sf("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/Shapefiles/SIRGAS_SHP_distrito_polygon.shp")
+distr <- read_sf("SIRGAS_SHP_distrito_polygon.shp")     # download at https://github.com/lucascividanes/Master-s-Thesis-R-Scripts/blob/master/SIRGAS_SHP_distrito_polygon.shp
 votes_distr_2012 <- sp_ver_2016_t[,c(1,6,8)]
 votes_distr_2016 <- spread(votes_distr_2016, NM_URNA_CANDIDATO,  VOTOS)
 votes_distr_2016 <- votes_distr_2016[1:96,]
@@ -86,12 +86,12 @@ sp_ver_2016_dom_mor_su <- subset(sp_ver_2016_dom_mor, DS_SIT_TOT_TURNO=="SUPLENT
 write.csv(sp_ver_2016_dom_mor_su, "DOM_MOR_SUPL_2016.csv", fileEncoding = "UTF-8")
 
 
-votacao_secao_2012_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_secao_2012_SP.txt", 
+votacao_secao_2012_SP <- read_delim("votacao_secao_2012_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais 
                                     ";", escape_double = FALSE, col_names = FALSE, 
                                     locale = locale(encoding = "latin1"), 
                                     trim_ws = TRUE)
 
-votacao_candidato_munzona_2012_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_candidato_munzona_2012_SP.txt", 
+votacao_candidato_munzona_2012_SP <- read_delim("votacao_candidato_munzona_2012_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                                 ";", escape_double = FALSE, col_names = FALSE, 
                                                 locale = locale(encoding = "latin1"), 
                                                 trim_ws = TRUE)
@@ -104,10 +104,6 @@ votacao_secao_2012_SP_sp_ver$zs <- str_replace(votacao_secao_2012_SP_sp_ver$zs, 
 votacao_secao_2012_SP_sp_ver$zs <- str_replace(votacao_secao_2012_SP_sp_ver$zs, " ", "")
 
 votacao_secao_2012_SP_sp_ver_nom <- subset(votacao_secao_2012_SP_sp_ver, X14>99)
-
-ZONA_SECAO <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/csv/ZONA_SECAO.csv", 
-                         ";", escape_double = FALSE, locale = locale(encoding = "UTF-8"), 
-                         trim_ws = TRUE)
 
 colnames(ZONA_SECAO)[5] <- "zs"
 sp_ver_2012 <- select(merge(votacao_secao_2012_SP_sp_ver_nom, ZONA_SECAO, by = "zs", all.x=T), "zs","DISTRITO", "ds_codigo", "X14", "X15")
@@ -137,10 +133,6 @@ sp_ver_2012_dom$dom <- sp_ver_2012_dom$A/sp_ver_2012_dom$B
 sp_ver_2012_dom$A <- NULL
 sp_ver_2012_dom$B <- NULL
 
-library(spdep)
-library(ape)
-
-distr <- read_sf("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/Shapefiles/SIRGAS_SHP_distrito_polygon.shp")
 votes_distr_2012 <- sp_ver_2012_t[,c(1,6,8)]
 votes_distr_2012 <- spread(votes_distr_2012, X15,  VOTOS)
 votes_distr_2012 <- votes_distr_2012[1:96,]
@@ -172,7 +164,3 @@ write.csv(sp_ver_2012_dom_mor_el, "DOM_MOR_ELEITOS_2012.csv", fileEncoding = "UT
 sp_ver_2012_dom_mor_su <- subset(sp_ver_2012_dom_mor, X22=="SUPLENTE", select = c("X15","dom", "mor"))
 colnames(sp_ver_2012_dom_mor_su)[1] <- "NM_URNA_CANDIDATO"
 write.csv(sp_ver_2012_dom_mor_su, "DOM_MOR_SUPL_2012.csv", fileEncoding = "UTF-8")
-
-
-
-
