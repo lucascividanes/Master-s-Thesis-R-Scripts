@@ -1,26 +1,26 @@
 library(readr)
 library(tidyverse)
 
-votacao_secao_2016_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_secao_2016_SP.txt", 
+votacao_secao_2016_SP <- read_delim("votacao_secao_2016_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                     ";", escape_double = FALSE, col_names = FALSE, 
                                     locale = locale(encoding = "latin1"), 
                                     trim_ws = TRUE)
 
-votacao_candidato_munzona_2016_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_candidato_munzona_2016_SP.csv", 
+votacao_candidato_munzona_2016_SP <- read_delim("votacao_candidato_munzona_2016_SP.csv",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                                 ";", escape_double = FALSE, locale = locale(encoding = "latin1"), 
                                                 trim_ws = TRUE)
 
-votacao_secao_2012_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_secao_2012_SP.txt", 
+votacao_secao_2012_SP <- read_delim("votacao_secao_2012_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                     ";", escape_double = FALSE, col_names = FALSE, 
                                     locale = locale(encoding = "latin1"), 
                                     trim_ws = TRUE)
 
-votacao_candidato_munzona_2012_SP <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/TSE/votacao_candidato_munzona_2012_SP.txt", 
+votacao_candidato_munzona_2012_SP <- read_delim("votacao_candidato_munzona_2012_SP.txt",     # download at http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1/repositorio-de-dados-eleitorais
                                                 ";", escape_double = FALSE, col_names = FALSE, 
                                                 locale = locale(encoding = "latin1"), 
                                                 trim_ws = TRUE)
 
-ZONA_SECAO <- read_delim("C:/Users/lucas/Google Drive/Acadêmicos/Sciences Po/Master/Research/Data/csv/ZONA_SECAO.csv", 
+ZONA_SECAO <- read_delim("ZONA_SECAO.csv",     # download at https://github.com/lucascividanes/Master-s-Thesis-R-Scripts/blob/master/ZONA_SECAO.csv
                          ";", escape_double = FALSE, locale = locale(encoding = "UTF-8"), 
                          trim_ws = TRUE)
 
